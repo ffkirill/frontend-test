@@ -72,6 +72,15 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
     setTimeout(() => this.setState({startTabSwitchAnimation: false}), 500);
   };
 
+  private tabHeader(kind: TabKind) {
+    return (
+      <a href="#"
+         className={this.getTabHeaderCssClass(kind)}
+         onClick={this.handleTabChange(kind)}>
+        { kind===TabKind.Upvote? "Upvote" : "Downvote"}
+      </a>
+  )}
+
   public render() {
     const friends = this.state.activeTab === TabKind.Upvote?
       this.props.upVotedFriends : this.props.downVotedFriends;
@@ -79,16 +88,8 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
       this.props.upVotedOther : this.props.downVotedOther;
     return <div>
       <div className="tabs-header">
-        <a href="#"
-           className={this.getTabHeaderCssClass(TabKind.Upvote)}
-           onClick={this.handleTabChange(TabKind.Upvote)}>
-          Upvote
-        </a>
-        <a href="#"
-           className={this.getTabHeaderCssClass(TabKind.Downvote)}
-           onClick={this.handleTabChange(TabKind.Downvote)}>
-          Downvote
-        </a>
+        {this.tabHeader(TabKind.Upvote)}
+        {this.tabHeader(TabKind.Downvote)}
       </div>
       <div className={ this.state.startTabSwitchAnimation? "fade-in" : "" }>
         { friends.length!=0? <h4 className="text-uppercase">Your friends</h4> : null }
