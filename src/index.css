@@ -6,4 +6,12 @@ body {
 
 .popover {
   max-width: 800px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-color: white;
 }
+
+.popover .arrow::before {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
