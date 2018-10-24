@@ -64,6 +64,7 @@ class App extends React.Component<AppProps, {}> {
     this.splitUsers(downVotes, downVotesFriends, downVotesOthers);
 
     return <Popover
+      className="animate-fade-in"
       key={`po-${key}`}
       placement="bottom"
       isOpen={this.props.isPopoverVisible}

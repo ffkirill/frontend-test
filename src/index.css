@@ -15,3 +15,16 @@ body {
   border-top-color: rgba(0, 0, 0, 0.1);
 }
 
+.animate-fade-in {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.fade-in {
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

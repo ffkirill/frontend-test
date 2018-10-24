@@ -13,7 +13,8 @@ enum TabKind {
 }
 
 export interface VotesListState {
-  readonly activeTab: TabKind
+  readonly activeTab: TabKind,
+  readonly startTabSwitchAnimation: boolean
 }
 
 export interface VotesListProps {
@@ -30,7 +31,10 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
 
   constructor(props: VotesListProps) {
     super(props);
-    this.state = { activeTab: TabKind.Upvote}
+    this.state = {
+      activeTab: TabKind.Upvote,
+      startTabSwitchAnimation: false
+    }
   }
 
   private followButton(userId: UserId) {
@@ -60,6 +64,14 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
     return this.state.activeTab !== kind? 'inactive' : ''
   }
 
+  private handleTabChange = (tab: TabKind) => () => {
+    this.setState({
+      activeTab: tab,
+        startTabSwitchAnimation: true
+    });
+    setTimeout(() => this.setState({startTabSwitchAnimation: false}), 500);
+  };
+
   public render() {
     const friends = this.state.activeTab === TabKind.Upvote?
       this.props.upVotedFriends : this.props.downVotedFriends;
@@ -69,19 +81,21 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
       <div className="tabs-header">
         <a href="#"
            className={this.getTabHeaderCssClass(TabKind.Upvote)}
-           onClick={ () => this.setState({activeTab: TabKind.Upvote}) }>
+           onClick={this.handleTabChange(TabKind.Upvote)}>
           Upvote
         </a>
         <a href="#"
            className={this.getTabHeaderCssClass(TabKind.Downvote)}
-           onClick={()=> this.setState({activeTab: TabKind.Downvote})}>
+           onClick={this.handleTabChange(TabKind.Downvote)}>
           Downvote
         </a>
       </div>
-      { friends.length!=0? <h4 className="text-uppercase">Your friends</h4> : null }
-      <div>{friends.map((user, index) => this.row(index, user))}</div>
-      { others.length!=0? <h4 className="text-uppercase">Other</h4> : null }
-      <div>{others.map((user, index) => this.row(index, user))}</div>
+      <div className={ this.state.startTabSwitchAnimation? "fade-in" : "" }>
+        { friends.length!=0? <h4 className="text-uppercase">Your friends</h4> : null }
+        <div>{friends.map((user, index) => this.row(index, user))}</div>
+        { others.length!=0? <h4 className="text-uppercase">Other</h4> : null }
+        <div>{others.map((user, index) => this.row(index, user))}</div>
+      </div>
     </div>
   }
 }
