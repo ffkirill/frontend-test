@@ -1,0 +1,67 @@
+h4 {
+  color: #727272;
+  letter-spacing: 2px;
+  font-size: 18px;
+  font-weight: lighter;
+  border-bottom: rgba(114, 114, 114, 0.24) 1px solid;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+
+div.tabs-header {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.tabs-header a {
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+  border-bottom: 2px black solid;
+}
+
+.tabs-header a:hover {
+  text-decoration: none;
+}
+
+.tabs-header a.inactive {
+  opacity: 0.5;
+  border-bottom: none;
+  font-weight: normal;
+}
+
+div.vote-row {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+img.user-avatar {
+  width: 50px;
+  margin-right: 15px;
+}
+
+div.user-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-text p {
+  margin-bottom: 0;
+}
+
+p.user-description {
+  color: #727272;
+}
+
+.user-fullname {
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+}
+
+button.follow-btn {
+  width: 90px;
+}

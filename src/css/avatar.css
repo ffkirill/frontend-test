@@ -1,0 +1,9 @@
+img.avatar {
+  border-radius: 50%;
+}
+
+.avatars-list img.avatar {
+  cursor: pointer;
+  margin-left: -10px;
+  position: relative;
+}
