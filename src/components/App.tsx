@@ -7,14 +7,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Actions } from '../store/actions';
 import { State } from  '../store/reducer';
 import { Dispatch } from '../store/store';
-import {User, UserId, UsersVotes} from '../store/types';
+import { User, UserId, UsersVotes } from '../store/types';
 import { VotesList } from './VotesList';
 
 import '../css/App.css';
 import '../css/avatar.css';
 
 type AppProps = State & {
-  dispatch: Dispatch;
+  readonly dispatch: Dispatch;
 }
 
 class App extends React.Component<AppProps, {}> {
@@ -23,9 +23,9 @@ class App extends React.Component<AppProps, {}> {
     return userId !== undefined ? `avatar${userId}` : 'body'
   }
 
-  readonly dispatch = this.props.dispatch;
+  private readonly dispatch = this.props.dispatch;
 
-  private hidePopover = () => this.dispatch(Actions.hidePopover());
+  private readonly hidePopover = () => this.dispatch(Actions.hidePopover());
 
   private showPopover(id: number) {
     return () => this.dispatch(Actions.showPopover(id));
@@ -49,10 +49,10 @@ class App extends React.Component<AppProps, {}> {
     }
   }
 
-  onFollow = (id: UserId) => this.dispatch(Actions.followUser(id));
-  onUnFollow = (id: UserId) => this.dispatch(Actions.unfollowUser(id));
+  private readonly onFollow = (id: UserId) => this.dispatch(Actions.followUser(id));
+  private readonly onUnFollow = (id: UserId) => this.dispatch(Actions.unfollowUser(id));
 
-  popover(key: number, target: string) {
+  private popover(key: number, target: string) {
     const upVotes = this.getUsersFromVotesMap(this.props.userUpvotes);
     const downVotes = this.getUsersFromVotesMap(this.props.userDownvotes);
     const upVotesFriends: User[] = [];
@@ -83,7 +83,7 @@ class App extends React.Component<AppProps, {}> {
     </Popover>
   }
 
-  avatar(key: number, zIndex: number, userId: number) {
+  private avatar(key: number, zIndex: number, userId: number) {
     const target = App.getPopoverTarget(userId);
     return [
       <img id={target}

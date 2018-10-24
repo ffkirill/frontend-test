@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from 'reactstrap';
 
-import {User, UserId, UserIdSet} from '../store/types';
+import { User, UserId, UserIdSet } from '../store/types';
 
 
 import '../css/avatar.css';
@@ -33,7 +33,7 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
     this.state = { activeTab: TabKind.Upvote}
   }
 
-  followButton(userId: UserId) {
+  private followButton(userId: UserId) {
     const isFollowing = this.props.followed.has(userId);
     const handler = isFollowing? this.props.onUnFollow : this.props.onFollow;
     const title = isFollowing? 'Following' : 'Follow';
@@ -45,7 +45,7 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
     </Button>;
   }
 
-  row(key: number, user: User) {
+  private row(key: number, user: User) {
     return <div key={key} className="vote-row">
       <img className="avatar user-avatar" src={user.avatar} />
       <div className="user-text">
@@ -56,10 +56,9 @@ export class VotesList extends React.Component<VotesListProps, VotesListState> {
     </div>
   }
 
-  getTabHeaderCssClass(kind: TabKind) {
+  private getTabHeaderCssClass(kind: TabKind) {
     return this.state.activeTab !== kind? 'inactive' : ''
   }
-
 
   public render() {
     const friends = this.state.activeTab === TabKind.Upvote?
